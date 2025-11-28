@@ -23,3 +23,22 @@ window.dispatchEvent(new Event('scroll'));
 btnTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+// =============== HERO SLIDER ===============
+document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.hero-slider', {
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+});
