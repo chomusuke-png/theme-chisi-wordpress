@@ -82,10 +82,6 @@
     align-self: center; 
 }
 
-.navbar li:hover > .menu-item-has-children::after {
-    transform: rotate(180deg);
-}
-
 /* ============================= */
 /*     ESTILOS DEL SUBMENÚ       */
 /* ============================= */
@@ -94,43 +90,61 @@
     display: none;
     position: absolute;
     top: 100%;
-    left: 0; 
-    transform: none; 
-    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #7b6a18;
-    min-width: 100%;
-    width: 100%;
+    min-width: 220px;
+    width: max-content;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    border-radius: 4px; 
+    overflow: hidden;
 }
 
-.navbar li:hover>.sub-menu {
-    display: block;
+.navbar ul .sub-menu::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent #7b6a18 transparent;
+}
+
+.navbar li:hover > .sub-menu {
+    display: flex;
 }
 
 .navbar ul .sub-menu li {
     margin: 0;
     padding: 0;
-    position: static;
+    position: relative;
     display: block;
-    flex-grow: 0;
-    max-width: none;
-    justify-content: center;
+    width: 100%;
     border-bottom: none !important; 
 }
 
 .navbar ul .sub-menu li a {
-    padding: 10px 20px;
+    box-sizing: border-box; 
+    padding: 12px 20px;
     display: block;
     width: 100%; 
-    text-align: center;
-    border-bottom: 2px solid transparent;
+    text-align: left;
+    color: #fff;
+    white-space: nowrap;
+    transition: background 0.3s;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.navbar ul .sub-menu li:last-child a {
+    border-bottom: none;
 }
 
 .navbar ul .sub-menu li a:hover {
     background-color: #5e5013;
     color: white;
-    border-bottom: 2px solid white; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
 }
