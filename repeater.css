@@ -1,0 +1,84 @@
+/* Contenedor principal de la lista */
+._theme-repeater-list {
+    margin: 15px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Cada ítem individual (tarjeta) */
+._theme-repeater-item {
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 12px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: border-color 0.2s;
+}
+
+._theme-repeater-item:hover {
+    border-color: #999;
+}
+
+/* Inputs y Selects */
+._theme-repeater-item input[type="text"],
+._theme-repeater-item select {
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+/* Campos específicos (opcional, para ajustes finos) */
+._theme-repeater-item .title-field {
+    font-weight: 600;
+}
+
+/* Área de controles (Arrastrar y Eliminar) */
+._theme-repeater-item .drag-handle {
+    cursor: move; /* Icono de mano al pasar */
+    font-size: 18px;
+    color: #ccc;
+    padding: 5px 10px 5px 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+._theme-repeater-item .drag-handle:hover {
+    color: #333;
+}
+
+/* Botón eliminar */
+._theme-repeater-item .remove-social {
+    float: right;
+    color: #dc3232;
+    border-color: #dc3232;
+    background: transparent;
+    margin-top: 0;
+}
+
+._theme-repeater-item .remove-social:hover {
+    background: #dc3232;
+    color: #fff;
+    border-color: #dc3232;
+}
+
+._theme-repeater-item .remove-social:focus {
+    box-shadow: 0 0 0 1px #dc3232;
+}
+
+/* Placeholder (el hueco amarillo/punteado al arrastrar) */
+.ui-sortable-placeholder {
+    border: 1px dashed #b4b9be;
+    box-sizing: border-box;
+    background: #f0f0f1;
+    height: 40px; /* Altura aproximada */
+    margin-bottom: 12px;
+    visibility: visible !important;
+}
+
+/* Botón de añadir (para darle un poco de aire arriba) */
+.add-repeater-item {
+    margin-bottom: 10px;
+}
