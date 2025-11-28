@@ -2,6 +2,8 @@
 
 function theme_setup() {
     add_theme_support('custom-logo');
+
+    add_theme_support('title-tag');
     
     // 1. Registra la ubicación principal del menú
     register_nav_menus(array(
