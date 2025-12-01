@@ -121,7 +121,6 @@
 /*       RESPONSIVE              */
 /* ============================= */
 @media (max-width: 768px) {
-    .navbar { display: none; }
     .hamburger { display: block; }
     .custom-logo { height: 70px !important; }
     .main-header { padding: 10px 20px; }
