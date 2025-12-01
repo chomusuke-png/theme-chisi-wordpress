@@ -79,7 +79,7 @@ function theme_enqueue_assets()
     wp_enqueue_style(
         'hero-slider',
         get_template_directory_uri() . '/assets/css/hero-slider.css',
-        array(),
+        array('swiper-css', 'global-style'),
         filemtime(get_template_directory() . '/assets/css/hero-slider.css')
     );
     
