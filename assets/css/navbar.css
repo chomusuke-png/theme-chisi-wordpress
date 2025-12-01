@@ -92,7 +92,7 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #7b6a18;
+    background-color: #eeda81;
     min-width: 220px;
     width: max-content;
     padding: 0;
@@ -101,6 +101,7 @@
     text-align: left;
     border-radius: 4px; 
     overflow: hidden;
+    z-index: 10;
 }
 
 .navbar ul .sub-menu::before {
@@ -133,7 +134,7 @@
     display: block;
     width: 100%; 
     text-align: left;
-    color: #fff;
+    color: black;
     white-space: nowrap;
     transition: background 0.3s;
     border-bottom: 1px solid rgba(255,255,255,0.1);
