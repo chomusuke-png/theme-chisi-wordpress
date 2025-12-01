@@ -3,7 +3,7 @@
 /* ============================= */
 
 .navbar {
-    background-color: #947e1e;
+    background-color: #eeda81;
     color: white;
     display: flex;
     justify-content: center;
@@ -36,17 +36,17 @@
 }
 
 .navbar li:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid black;
 }
 
 .navbar a.active, 
 .navbar li.active {
-    border-bottom: 2px solid white; 
+    border-bottom: 2px solid black; 
 }
 
 
 .navbar a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 1em;
     padding: 10px 10px; 
@@ -76,7 +76,7 @@
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     font-size: 0.7em;
-    color: white;
+    color: black;
     margin-left: 0; 
     transition: transform 0.3s ease;
     align-self: center; 
