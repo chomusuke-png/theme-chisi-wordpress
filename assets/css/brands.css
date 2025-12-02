@@ -3,26 +3,27 @@
 /* ==================== */
 
 .brands-section {
-    padding: 60px 0;
+    padding: 80px 0; /* Más espacio vertical */
     background-color: #ffffff;
     border-bottom: 1px solid #eee;
 }
 
 .brands-container {
-    max-width: 1200px; /* Un poco más estrecho para que se vea compacto */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     text-align: center;
 }
 
-/* La Grilla Mágica */
+/* La Grilla */
 .brands-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-    gap: 40px; /* Más espacio entre logos */
+    /* Aumentamos el espacio mínimo de columna a 220px para que quepan logos grandes */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 50px; /* Mucho espacio entre logos para elegancia */
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 /* Ítem Individual */
@@ -30,21 +31,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
     transition: transform 0.3s ease;
 }
 
 .brand-item:hover {
-    transform: translateY(-3px);
+    transform: scale(1.05); /* Zoom suave */
 }
 
-/* Imágenes */
+/* Imágenes (Logos GRANDES) */
 .brand-item img {
     max-width: 100%;
-    max-height: 70px;
+    /* CAMBIO: 110px es notablemente más grande que los 70px del slider */
+    max-height: 110px; 
     width: auto;
     filter: grayscale(100%);
-    opacity: 0.6;
+    opacity: 0.8; /* Más opacos para que destaquen más */
     transition: all 0.3s ease;
     object-fit: contain;
 }
@@ -53,16 +55,18 @@
 .brand-item img:hover {
     filter: grayscale(0%);
     opacity: 1;
-    transform: scale(1.05);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .brands-section {
+        padding: 50px 0;
+    }
     .brands-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+        gap: 30px;
     }
     .brand-item img {
-        max-height: 60px;
+        max-height: 80px; /* En móvil un poco más chicos para que no rompan el layout */
     }
 }
