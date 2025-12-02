@@ -136,8 +136,25 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/js/main.js'),
         true
     );
+    // Estilos para Archivos Y Búsqueda (Reutilizamos el diseño)
+    if (is_archive() || is_search()) {
+        wp_enqueue_style(
+            'archive-style',
+            get_template_directory_uri() . '/assets/css/archive.css',
+            array('global-style'),
+            filemtime(get_template_directory() . '/assets/css/archive.css')
+        );
+    }
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 
 require_once get_template_directory() . '/includes/customizer.php';
+
+function filter_search_query($query) {
+    if ($query->is_search && !is_admin()) {
+        $query->set('post_type', array('post', 'page'));
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'filter_search_query');
 ?>
