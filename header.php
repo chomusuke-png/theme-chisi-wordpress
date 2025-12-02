@@ -28,6 +28,11 @@
         </div>
 
         <div class="header-right">
+            
+            <a href="<?php echo esc_url(home_url('/hazte-miembro')); ?>" class="btn-member">
+                Hazte Miembro
+            </a>
+
             <div class="contact">
                 <?php
                 $items = json_decode(get_theme_mod('_theme_social_repeater'), true);

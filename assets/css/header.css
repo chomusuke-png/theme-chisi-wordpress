@@ -74,8 +74,36 @@
 }
 
 /* ============================= */
-/* REDES SOCIALES           */
+/* ZONA DERECHA (BOTÓN + REDES) */
 /* ============================= */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre el botón y las redes */
+}
+
+/* BOTÓN HAZTE MIEMBRO */
+.btn-member {
+    background-color: #947e1e;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px; /* Píldora */
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-member:hover {
+    background-color: #7a6615; /* Un tono más oscuro */
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* REDES SOCIALES */
 .header-right .contact {
     display: flex;
     gap: 10px; /* Espacio entre botones */
@@ -173,6 +201,11 @@
     .header-center {
         display: none; /* Ocultar buscador en móvil */
     }
+    
+    .btn-member {
+        display: none; /* Ocultamos el botón en móvil para no saturar el header */
+    }
+
     .main-header {
         padding: 10px 20px;
     }
