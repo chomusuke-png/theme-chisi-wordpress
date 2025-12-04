@@ -29,9 +29,17 @@
 
         <div class="header-right">
             
-            <a href="<?php echo esc_url(home_url('/hazte-miembro')); ?>" class="btn-member">
-                Hazte Miembro
-            </a>
+            <?php
+            // Obtenemos los valores del customizer con valores por defecto
+            $btn_text = get_theme_mod('_theme_header_btn_text', 'Hazte Miembro');
+            $btn_url  = get_theme_mod('_theme_header_btn_url', home_url('/hazte-miembro'));
+            
+            if (!empty($btn_text)): 
+            ?>
+                <a href="<?php echo esc_url($btn_url); ?>" class="btn-member">
+                    <?php echo esc_html($btn_text); ?>
+                </a>
+            <?php endif; ?>
 
             <div class="contact">
                 <?php

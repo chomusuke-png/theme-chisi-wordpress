@@ -41,9 +41,7 @@ if (class_exists('WP_Customize_Control')) {
 
         public function enqueue()
         {
-            // IMPORTANTE: Encolar la librería de medios de WordPress
             wp_enqueue_media();
-            
             wp_enqueue_script('jquery-ui-sortable');
             wp_enqueue_script('_theme-repeater', get_template_directory_uri() . '/repeater.js', ['jquery', 'jquery-ui-sortable'], false, true);
             wp_enqueue_style('_theme-repeater-css', get_template_directory_uri() . '/repeater.css');
@@ -80,14 +78,12 @@ if (class_exists('WP_Customize_Control')) {
                                             $display_style = $img_val ? 'display:block;' : 'display:none;';
                                         ?>
                                         <img src="<?php echo esc_url($img_val); ?>" class="repeater-image-preview" style="<?php echo $display_style; ?>" />
-                                        
                                         <input type="hidden" class="icon-field" value="<?php echo esc_attr($img_val); ?>">
                                         <button type="button" class="button upload-repeater-image">Seleccionar Imagen</button>
                                         <?php if($img_val): ?>
                                             <button type="button" class="button remove-repeater-image" style="color: #a00;">X</button>
                                         <?php endif; ?>
                                     </div>
-
                                 <?php else: ?>
                                     <select class="icon-select">
                                         <option value="">Elegir icono…</option>
@@ -110,10 +106,7 @@ if (class_exists('WP_Customize_Control')) {
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>
-
-                <input type="hidden" class="_theme-repeater-hidden" <?php $this->link(); ?>
-                    value="<?php echo esc_attr($this->value()); ?>">
-
+                <input type="hidden" class="_theme-repeater-hidden" <?php $this->link(); ?> value="<?php echo esc_attr($this->value()); ?>">
             </div>
             <?php
         }
@@ -126,7 +119,7 @@ if (class_exists('WP_Customize_Control')) {
 
 function _theme_customize_register($wp_customize)
 {
-    // ICONOS PREDEFINIDOS
+    // ... (Iconos predefinidos) ...
     $social_icons = [
         'fab fa-facebook-f' => 'Facebook',
         'fab fa-instagram' => 'Instagram',
@@ -149,18 +142,13 @@ function _theme_customize_register($wp_customize)
         'title' => __('Redes Sociales', '_theme'),
         'priority' => 30,
     ]);
-
-    $wp_customize->add_setting('_theme_social_repeater', [
-        'default' => '',
-        'sanitize_callback' => 'wp_kses_post'
-    ]);
-
+    $wp_customize->add_setting('_theme_social_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
     $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_social_repeater', [
         'label' => __('Redes sociales dinámicas', '_theme'),
         'section' => '_theme_social_section',
         'repeater_icons' => $social_icons,
         'button_text' => 'Añadir red social',
-        'mode' => 'icon', // Modo normal
+        'mode' => 'icon',
         'input_labels' => ['title' => 'Título', 'icon' => 'Clase Icono (fa-...)', 'url' => 'Enlace']
     ]));
 
@@ -169,80 +157,52 @@ function _theme_customize_register($wp_customize)
         'title' => __('Sitios Relacionados (Footer)', '_theme'),
         'priority' => 31,
     ]);
-
-    $wp_customize->add_setting('_theme_related_sites_repeater', [
-        'default' => '',
-        'sanitize_callback' => 'wp_kses_post'
-    ]);
-
+    $wp_customize->add_setting('_theme_related_sites_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
     $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_related_sites_repeater', [
         'label' => __('Enlaces del Footer', '_theme'),
         'section' => '_theme_related_sites_section',
         'repeater_icons' => $related_icons,
         'button_text' => 'Añadir sitio',
-        'mode' => 'icon', // Modo normal
+        'mode' => 'icon',
         'input_labels' => ['title' => 'Texto del enlace', 'icon' => 'Clase Icono', 'url' => 'URL Destino']
     ]));
 
-    // 3. ALIADOS / PARTNERS (MODO IMAGEN)
+    // 3. ALIADOS / PARTNERS
     $wp_customize->add_section('_theme_partners_section', [
         'title' => __('Aliados y Logos', '_theme'),
         'priority' => 32,
     ]);
-
-    $wp_customize->add_setting('_theme_partners_repeater', [
-        'default' => '',
-        'sanitize_callback' => 'wp_kses_post'
-    ]);
-
+    $wp_customize->add_setting('_theme_partners_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
     $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_partners_repeater', [
-        'label' => __('Logos del Slider', '_theme'),
+        'label' => __('Logos del Slider (Aliados)', '_theme'),
         'section' => '_theme_partners_section',
         'button_text' => 'Añadir Aliado',
-        'mode' => 'image', // <--- ESTO ACTIVA EL SUBIDOR DE IMÁGENES
-        'input_labels' => [
-            'title' => 'Nombre de la empresa',
-            'icon'  => 'Logo de la empresa',
-            'url'   => 'Sitio web (Opcional)'
-        ]
+        'mode' => 'image',
+        'input_labels' => ['title' => 'Nombre de la empresa', 'icon'  => 'Logo de la empresa', 'url'   => 'Sitio web (Opcional)']
     ]));
 
-    // 4. MARCAS QUE CONFÍAN (GRID) - NUEVO
+    // 4. MARCAS (GRID)
     $wp_customize->add_section('_theme_brands_section', [
         'title' => __('Marcas (Grilla)', '_theme'),
         'priority' => 33,
-        'description' => 'Logos que se mostrarán en formato grilla (más pequeños).'
     ]);
-
-    $wp_customize->add_setting('_theme_brands_repeater', [
-        'default' => '',
-        'sanitize_callback' => 'wp_kses_post'
-    ]);
-
+    $wp_customize->add_setting('_theme_brands_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
     $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_brands_repeater', [
         'label' => __('Logos de Marcas', '_theme'),
         'section' => '_theme_brands_section',
         'button_text' => 'Añadir Marca',
-        'mode' => 'image', // Usamos el modo imagen también
-        'input_labels' => [
-            'title' => 'Nombre de la marca',
-            'icon'  => 'Logo',
-            'url'   => 'Sitio web (Opcional)'
-        ]
+        'mode' => 'image',
+        'input_labels' => ['title' => 'Nombre de la marca', 'icon'  => 'Logo', 'url'   => 'Sitio web (Opcional)']
     ]));
 
-    // 5. GENERAL
+    // 5. CONFIGURACIÓN GENERAL (Aquí agregamos el botón del header)
     $wp_customize->add_section('_theme_general_section', array(
         'title' => __('Configuración General', '_theme'),
         'priority' => 35,
     ));
 
-    $wp_customize->add_setting('_theme_posts_per_page', array(
-        'default' => 10,
-        'sanitize_callback' => 'absint',
-        'transport' => 'refresh'
-    ));
-
+    // Cantidad de posts
+    $wp_customize->add_setting('_theme_posts_per_page', array('default' => 10, 'sanitize_callback' => 'absint'));
     $wp_customize->add_control('_theme_posts_per_page_control', array(
         'label' => __('Cantidad de artículos', '_theme'),
         'section' => '_theme_general_section',
@@ -250,7 +210,32 @@ function _theme_customize_register($wp_customize)
         'type' => 'number',
         'input_attrs' => array('min' => 1, 'max' => 50, 'step' => 1)
     ));
+
+    // === NUEVO: BOTÓN DEL HEADER ===
     
+    // Texto del Botón
+    $wp_customize->add_setting('_theme_header_btn_text', [
+        'default' => 'Hazte Miembro',
+        'sanitize_callback' => 'sanitize_text_field'
+    ]);
+    $wp_customize->add_control('_theme_header_btn_text', [
+        'label' => __('Texto Botón Header', '_theme'),
+        'section' => '_theme_general_section',
+        'type' => 'text'
+    ]);
+
+    // URL del Botón
+    $wp_customize->add_setting('_theme_header_btn_url', [
+        'default' => home_url('/hazte-miembro'),
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    $wp_customize->add_control('_theme_header_btn_url', [
+        'label' => __('Enlace Botón Header', '_theme'),
+        'section' => '_theme_general_section',
+        'type' => 'url'
+    ]);
+
+    // Variables globales para JS
     $wp_customize->social_icons = $social_icons;
     $wp_customize->related_icons = $related_icons;
 }
