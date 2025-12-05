@@ -14,7 +14,7 @@
 
 /* LOGO */
 .custom-logo {
-    height: 90px !important;
+    height: 80px !important;
     width: auto;
 }
 
@@ -90,7 +90,7 @@
     padding: 12px 20px;
     border-radius: 50px; /* Píldora */
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
@@ -133,7 +133,6 @@
 .btn-social-toggle.active {
     background: #947e1e;
     color: white;
-    box-shadow: 0 4px 10px rgba(148, 126, 30, 0.3);
 }
 
 /* Menú Desplegable (Tira Vertical) */
