@@ -1,8 +1,8 @@
 body {
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #faf9f6; /* Blanco perla suave (menos duro que el blanco puro) */
-    color: #444; /* Gris oscuro para texto principal */
+    font-family: "Helvetica Now Text", Helvetica, Arial, sans-serif;
+    background-color: #faf9f6;
+    color: #444;
     line-height: 1.6;
 }
 
@@ -11,14 +11,14 @@ body {
     text-align: center;
     margin: 50px 0 30px;
     font-size: 1.8rem;
-    color: #947e1e; /* Color mostaza original */
+    color: #947e1e;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 /* ================================= */
-/* WIDGETS DEL HOME (NUEVO)         */
+/*  WIDGETS DEL HOME (NUEVO)         */
 /* ================================= */
 .home-widgets-container {
     max-width: 1200px;
