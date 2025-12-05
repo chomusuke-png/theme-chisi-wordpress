@@ -87,10 +87,10 @@
     background-color: #947e1e;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 50px; /* Píldora */
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
