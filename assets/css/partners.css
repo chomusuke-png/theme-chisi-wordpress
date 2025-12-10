@@ -25,8 +25,8 @@
 
 /* Imágenes (Logos) */
 .partners-slider img {
-    max-height: 110px; 
-    max-width: 200px; 
+    max-height: 90px; 
+    max-width: 150px; 
     width: auto;
     height: auto;
     filter: grayscale(100%);
