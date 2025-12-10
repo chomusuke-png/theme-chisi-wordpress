@@ -44,6 +44,7 @@
             <div class="social-menu-container">
                 <button id="socialToggleBtn" class="btn-social-toggle" aria-label="Síguenos">
                     <i class="fa-solid fa-share-nodes"></i>
+                    <span class="btn-text">REDES</span>
                 </button>
 
                 <div class="social-dropdown" id="socialDropdown">
