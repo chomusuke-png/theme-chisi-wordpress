@@ -51,42 +51,12 @@ add_action('after_setup_theme', 'theme_setup');
  */
 function theme_enqueue_assets()
 {
+    // 1. Librerías Externas
     wp_enqueue_style(
         'font-awesome-6',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
         array(),
         '6.5.0'
-    );
-
-    wp_enqueue_style(
-        'global-style',
-        get_template_directory_uri() . '/assets/css/globals.css',
-        array(),
-        filemtime(get_template_directory() . '/assets/css/globals.css')
-    );
-    wp_enqueue_style(
-        'main-style',
-        get_template_directory_uri() . '/assets/css/header.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/header.css')
-    );
-    wp_enqueue_style(
-        'nav-style',
-        get_template_directory_uri() . '/assets/css/navbar.css',
-        array('main-style'),
-        filemtime(get_template_directory() . '/assets/css/navbar.css')
-    );
-    wp_enqueue_style(
-        'footer-style',
-        get_template_directory_uri() . '/assets/css/footer.css',
-        array('main-style'),
-        filemtime(get_template_directory() . '/assets/css/footer.css')
-    );
-    wp_enqueue_style(
-        'button-top-style',
-        get_template_directory_uri() . '/assets/css/button-top.css',
-        array(),
-        filemtime(get_template_directory() . '/assets/css/button-top.css')
     );
     wp_enqueue_style(
         'swiper-css',
@@ -94,43 +64,91 @@ function theme_enqueue_assets()
         [],
         '11.0.0'
     );
+
+    // 2. BASE (Globales)
     wp_enqueue_style(
-        'hero-slider',
-        get_template_directory_uri() . '/assets/css/hero-slider.css',
-        array('swiper-css', 'global-style'),
-        filemtime(get_template_directory() . '/assets/css/hero-slider.css')
+        'theme-base',
+        get_template_directory_uri() . '/assets/css/base/globals.css',
+        array(),
+        filemtime(get_template_directory() . '/assets/css/base/globals.css')
+    );
+
+    // 3. LAYOUT (Estructura)
+    wp_enqueue_style(
+        'theme-header',
+        get_template_directory_uri() . '/assets/css/layout/header.css',
+        array('theme-base'),
+        filemtime(get_template_directory() . '/assets/css/layout/header.css')
     );
     wp_enqueue_style(
-        'categories-style',
-        get_template_directory_uri() . '/assets/css/categories.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/categories.css')
+        'theme-navbar',
+        get_template_directory_uri() . '/assets/css/layout/navbar.css',
+        array('theme-header'),
+        filemtime(get_template_directory() . '/assets/css/layout/navbar.css')
     );
     wp_enqueue_style(
-        'archive-style',
-        get_template_directory_uri() . '/assets/css/archive.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/archive.css')
+        'theme-footer',
+        get_template_directory_uri() . '/assets/css/layout/footer.css',
+        array('theme-base'),
+        filemtime(get_template_directory() . '/assets/css/layout/footer.css')
+    );
+
+    // 4. MODULES (Componentes)
+    wp_enqueue_style(
+        'theme-hero-slider',
+        get_template_directory_uri() . '/assets/css/modules/hero-slider.css',
+        array('swiper-css', 'theme-base'),
+        filemtime(get_template_directory() . '/assets/css/modules/hero-slider.css')
     );
     wp_enqueue_style(
-        'page-style',
-        get_template_directory_uri() . '/assets/css/page.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/page.css')
+        'theme-categories',
+        get_template_directory_uri() . '/assets/css/modules/categories.css',
+        array('theme-base'),
+        filemtime(get_template_directory() . '/assets/css/modules/categories.css')
     );
     wp_enqueue_style(
-        'single-style',
-        get_template_directory_uri() . '/assets/css/single.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/single.css')
+        'theme-chips',
+        get_template_directory_uri() . '/assets/css/modules/chips.css',
+        array('theme-base'),
+        filemtime(get_template_directory() . '/assets/css/modules/chips.css')
     );
     wp_enqueue_style(
-        'chips-style',
-        get_template_directory_uri() . '/assets/css/chips.css',
-        array('global-style'),
-        filemtime(get_template_directory() . '/assets/css/chips.css')
+        'theme-btn-top',
+        get_template_directory_uri() . '/assets/css/modules/button-top.css',
+        array(),
+        filemtime(get_template_directory() . '/assets/css/modules/button-top.css')
     );
-    
+
+    // 5. PAGES (Vistas específicas)
+    if (is_singular('post')) {
+        wp_enqueue_style(
+            'theme-single',
+            get_template_directory_uri() . '/assets/css/pages/single.css',
+            array('theme-base'),
+            filemtime(get_template_directory() . '/assets/css/pages/single.css')
+        );
+    }
+
+    if (is_page()) {
+        wp_enqueue_style(
+            'theme-page',
+            get_template_directory_uri() . '/assets/css/pages/page.css',
+            array('theme-base'),
+            filemtime(get_template_directory() . '/assets/css/pages/page.css')
+        );
+    }
+
+    if (is_archive() || is_search() || is_home()) {
+        // Nota: is_home() a veces usa estilos de archive para las tarjetas
+        wp_enqueue_style(
+            'theme-archive',
+            get_template_directory_uri() . '/assets/css/pages/archive.css',
+            array('theme-base'),
+            filemtime(get_template_directory() . '/assets/css/pages/archive.css')
+        );
+    }
+
+    // SCRIPTS JS
     wp_enqueue_script(
         'swiper-js',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
@@ -145,15 +163,6 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/js/main.js'),
         true
     );
-
-    if (is_archive() || is_search()) {
-        wp_enqueue_style(
-            'archive-style',
-            get_template_directory_uri() . '/assets/css/archive.css',
-            array('global-style'),
-            filemtime(get_template_directory() . '/assets/css/archive.css')
-        );
-    }
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 

@@ -39,12 +39,18 @@ if (class_exists('WP_Customize_Control')) {
             }
         }
 
+        // En includes/customizer.php, dentro de la función public function enqueue()
+
         public function enqueue()
         {
             wp_enqueue_media();
             wp_enqueue_script('jquery-ui-sortable');
-            wp_enqueue_script('_theme-repeater', get_template_directory_uri() . '/repeater.js', ['jquery', 'jquery-ui-sortable'], false, true);
-            wp_enqueue_style('_theme-repeater-css', get_template_directory_uri() . '/repeater.css');
+            
+            // JS sigue en la raíz de assets/js (no lo movimos, o podrías moverlo a admin también)
+            wp_enqueue_script('_theme-repeater', get_template_directory_uri() . '/assets/js/repeater.js', ['jquery', 'jquery-ui-sortable'], false, true);
+            
+            // CAMBIO AQUÍ: Apuntamos a la carpeta admin
+            wp_enqueue_style('_theme-repeater-css', get_template_directory_uri() . '/assets/css/admin/repeater.css');
         }
         
         public function render_content()
